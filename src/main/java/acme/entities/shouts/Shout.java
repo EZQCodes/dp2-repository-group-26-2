@@ -44,13 +44,12 @@ public class Shout extends DomainEntity {
 	@Past
 	@NotNull
 	protected Date				moment;
-
+	@Length(min=5,max=25)
 	@NotBlank
 	protected String			author;
-	@Length(min=1,max=100)
+	@Length(max=100)
 	@NotBlank
 	protected String			text;
-	@Length(min=20)
 	@URL
 	protected String			info;
 
