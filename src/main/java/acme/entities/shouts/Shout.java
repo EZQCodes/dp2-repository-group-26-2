@@ -21,6 +21,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
 import org.hibernate.validator.constraints.URL;
 
 import acme.framework.entities.DomainEntity;
@@ -45,10 +47,10 @@ public class Shout extends DomainEntity {
 
 	@NotBlank
 	protected String			author;
-
+	@Length(min=1,max=100)
 	@NotBlank
 	protected String			text;
-	
+	@Length(min=20)
 	@URL
 	protected String			info;
 
