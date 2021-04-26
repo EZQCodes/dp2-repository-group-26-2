@@ -12,6 +12,8 @@
 
 package acme.features.anonymous.shout;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +58,7 @@ public class AnonymousShoutListService implements AbstractListService<Anonymous,
 
 		Collection<Shout> result;
 
-		result = this.repository.findMany();
+		result = this.repository.findByLastMonth(Date.valueOf(LocalDate.now().plusDays(1)), Date.valueOf(LocalDate.now().plusMonths(-1)));
 
 		return result;
 	}
