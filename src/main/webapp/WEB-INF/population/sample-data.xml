@@ -49,6 +49,17 @@
 		<property name="info" value="http://www.sample-app.com"/>
 	</bean>
 	
+	<!-- Tasks -->
+	
+	<bean id="task01" class="acme.entities.tasks.Task">
+		<property name="title" value="Title of task 01"/>
+		<property name="executionPeriodInit" value="2021/05/10 19:39"/>
+		<property name="executionPeriodEnd" value="2021/05/11 19:39"/>
+		<property name="isPublic" value="true"/>
+		<property name="description" value="Description of task 01"/>
+		<property name="optionalLink" value="https://www.google.com"/>
+	</bean>
+	
 	<!-- Announcements-->
 	
 	<bean id="announcement01" class="acme.entities.announcements.Announcement">
