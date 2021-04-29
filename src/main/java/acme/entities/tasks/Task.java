@@ -1,8 +1,7 @@
 package acme.entities.tasks;
 
-import static java.time.temporal.ChronoUnit.MINUTES;
-
-import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
@@ -37,12 +36,12 @@ public class Task extends DomainEntity {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Future
 	@NotNull
-	protected LocalDateTime executionPeriodInit;
+	protected Date executionPeriodInit;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Future
 	@NotNull
-	protected LocalDateTime executionPeriodEnd;
+	protected Date executionPeriodEnd;
 	
 	@NotBlank
 	@Length(min=1, max=500)
@@ -58,7 +57,8 @@ public class Task extends DomainEntity {
 
 	@Digits(fraction=2, integer=10)
 	public Double workload(){
-		final Long a = MINUTES.between(this.executionPeriodInit, this.executionPeriodEnd);
+		final Long b = Math.abs(this.executionPeriodEnd.getTime()-this.executionPeriodInit.getTime());
+		final Long a = TimeUnit.MINUTES.convert(b, TimeUnit.MILLISECONDS);
 		return a.doubleValue()/60.0;
 	}
 
